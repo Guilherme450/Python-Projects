@@ -39,9 +39,11 @@ class NTC_Resistance:
         plt.title('Variação da Resistência de um NTC')
         plt.show()
 
-my_temperature = np.array([10, 20, 40, 60, 80, 100, 120])
+list_temperetures = [i + 20 for i in range(0, 100)]
+
+my_temperature = np.array(list_temperetures)
 
 main = NTC_Resistance(my_temperature)
 
-main.show_numeric_result()
+#main.show_numeric_result()
 main.show_visual_result()
