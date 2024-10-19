@@ -3,25 +3,25 @@ from scipy.constants import zero_Celsius
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-class NTC_Resistance:
+class NtcResistance:
     TERMISTOR_CONSTANT_KELVIN = 3450
     AMBIENT_RESISTANCE = 1
     AMBIENT_TEMPERATURE_KELVIN = 298.15
 
-    def __init__(self, temperature):
+    def __init__(self, temperature:list[float]):
         self.temperature = temperature
     
-    def NTC_resistance_algorithm(self):
+    def NTC_resistance_algorithm(self) -> list[float]:
         final_temperature_converted = self.temperature + zero_Celsius
 
-        inside_exp = NTC_Resistance.TERMISTOR_CONSTANT_KELVIN * (1/final_temperature_converted - 
-                                                                 1/NTC_Resistance.AMBIENT_TEMPERATURE_KELVIN)
+        inside_exp = NtcResistance.TERMISTOR_CONSTANT_KELVIN * (1/final_temperature_converted - 
+                                                                 1/NtcResistance.AMBIENT_TEMPERATURE_KELVIN)
 
-        resistance = NTC_Resistance.AMBIENT_RESISTANCE * np.exp(inside_exp)
+        resistance = NtcResistance.AMBIENT_RESISTANCE * np.exp(inside_exp)
 
         return resistance
 
-    def show_numeric_result(self):
+    def show_numeric_result(self) -> None:
         index = 0
 
         for i in self.NTC_resistance_algorithm():
@@ -30,7 +30,7 @@ class NTC_Resistance:
 
             index += 1
     
-    def show_visual_result(self):
+    def show_visual_result(self) -> None:
         fig = plt.figure(figsize=(5.5, 4.5))
         sns.lineplot(x=self.temperature, y=self.NTC_resistance_algorithm())
         plt.xlabel('Temperature (Celsius)')
@@ -43,7 +43,7 @@ list_temperetures = [i + 20 for i in range(0, 100)]
 
 my_temperature = np.array(list_temperetures)
 
-main = NTC_Resistance(my_temperature)
+main: NtcResistance = NtcResistance(my_temperature)
 
-#main.show_numeric_result()
+main.show_numeric_result()
 main.show_visual_result()
