@@ -1,7 +1,6 @@
 import time
 
 # algoritmo para descobrir as raízes racionais de um polinômio.
-
 def briot_ruffini(coefficients: list[int], likely_roots: list[int], lenght_coefficients: int) -> None:
   resultado = coefficients[0]
   for i in likely_roots:
